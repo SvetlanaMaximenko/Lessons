@@ -29,12 +29,24 @@ def decorator(func: Callable) -> Callable:
     return inner
 
 
-@decorator
-def add(a, b: int) -> int:
-    return print(a+b)
+# @decorator
+# def add(a, b: int) -> int:
+#     return print(a+b)
 
+
+@decorator
+def add(*Number, **Numbers1) -> int:
+    s = 0
+    for i in Number:
+        s += i
+    for i in Numbers1:
+        s += Numbers1[i]
+    return print(s)
 
 add(2, 3)
 add(a=4, b=5)
 add(1, b=2)
 add()
+add(2, 3, 9, 8, 10)
+add(a=4, b=5, c=1)
+add(1, b=2, d=1, h=9)
