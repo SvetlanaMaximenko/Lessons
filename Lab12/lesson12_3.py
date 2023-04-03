@@ -4,7 +4,7 @@
 # Если число делится на 7 и на 4 одновременно, процесс останавливается.
 # Если пользователь ввел не число, вывести ошибку, что введенные данные не являются числом.
 
-class Error_input(Exception):
+class Input_Error(Exception):
 
     def __init__(self, text):
         self.txt = text
@@ -13,12 +13,12 @@ class Error_input(Exception):
 try:
     number = int(input("Введите целое число -> "))
     if (number % 7) == 0 and (number % 4) == 0:
-        raise Error_input("The number is divisible by 7 and 4")
+        raise Input_Error("The number is divisible by 7 and 4")
     if number % 2 == 0:
         print(f"Число четное. Квадрат числа {number} = {number ** 2}")
     else:
         print(number)
 except ValueError:
     print("Error type of value!")
-except Error_input:
+except Input_Error:
     print("The number is divisible by 7 and 4")

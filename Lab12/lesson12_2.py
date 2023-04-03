@@ -14,7 +14,7 @@
 import random
 
 
-class Error_input(Exception):
+class Input_Error(Exception):
 
     def __init__(self, text):
         self.txt = text
@@ -23,10 +23,10 @@ class Error_input(Exception):
 try:
     player = int(input('Выберите 1 - камень, 2 - ножницы, 3 - бумага '))
     if player < 1 or player > 3:
-        raise Error_input("You entered not 1, 2, 3")
+        raise Input_Error("You entered not 1, 2, 3")
 except ValueError:
     print("Error type of value!")
-except Error_input:
+except Input_Error:
     print("You entered not 1, 2, 3")
 else:
     bot = random.randint(1, 3)
