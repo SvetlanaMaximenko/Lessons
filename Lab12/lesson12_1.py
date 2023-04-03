@@ -12,32 +12,31 @@
 import time
 
 
-class decorator():
+class decorator:
 
     def __init__(self, func):
         self.func = func
 
     def __call__(self, *args, **kwargs):
 
-        if len(args) ==0  and len(kwargs) == 0:
+        if not args and not kwargs:
             return print(f'Функция {self.func.__name__} вызвана в {time.strftime("%Y-%m-%d %X")} без параметров', end='\n')
         print(f'Функция {self.func.__name__} вызвана в {time.strftime("%Y-%m-%d %X")} c', end=" ")
-        if args != ():
+        if args:
             print(f"позиционными параметрами {args}", end=" ")
-        if len(kwargs) != 0:
+        if kwargs:
             print(f"именованными параметрами {kwargs}", end=" ")
         print(end="\n")
-        self.func(*args, **kwargs)
         return self.func(*args, **kwargs)
 
 
 @decorator
-def my_add(*Number, **Numbers1) -> int:
+def my_add(*number, **numbers1) -> int:
     s = 0
-    for i in Number:
+    for i in number:
         s += i
-    for i in Numbers1:
-        s += Numbers1[i]
+    for i in numbers1:
+        s += numbers1[i]
     return s
 
 

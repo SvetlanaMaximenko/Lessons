@@ -14,7 +14,7 @@
 import random
 
 
-class Input_Error(Exception):
+class input_Error(Exception):
 
     def __init__(self, text):
         self.txt = text
