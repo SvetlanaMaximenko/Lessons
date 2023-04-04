@@ -7,7 +7,7 @@
 class Input_Error(Exception):
 
     def __init__(self, text):
-        self.txt = text
+        self.text = text
 
 
 try:
