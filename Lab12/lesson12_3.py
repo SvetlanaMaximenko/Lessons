@@ -4,7 +4,7 @@
 # Если число делится на 7 и на 4 одновременно, процесс останавливается.
 # Если пользователь ввел не число, вывести ошибку, что введенные данные не являются числом.
 
-class input_Error(Exception):
+class Input_Error(Exception):
 
     def __init__(self, text):
         self.txt = text

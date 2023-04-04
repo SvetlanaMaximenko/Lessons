@@ -19,14 +19,14 @@ class decorator:
 
     def __call__(self, *args, **kwargs):
 
+        print(f"Функция {self.func.__name__} вызвана в {time.strftime('%Y-%m-%d %X')}", end=" ")
         if not args and not kwargs:
-            return print(f'Функция {self.func.__name__} вызвана в {time.strftime("%Y-%m-%d %X")} без параметров', end='\n')
-        print(f'Функция {self.func.__name__} вызвана в {time.strftime("%Y-%m-%d %X")} c', end=" ")
-        if args:
-            print(f"позиционными параметрами {args}", end=" ")
-        if kwargs:
-            print(f"именованными параметрами {kwargs}", end=" ")
-        print(end="\n")
+            print(f" без параметров", end="\n")
+        else:
+            if args:
+                print(f" c позиционными параметрами {args}", end="\n")
+            if kwargs:
+                print(f" c именованными параметрами {kwargs}", end="\n")
         return self.func(*args, **kwargs)
 
 
