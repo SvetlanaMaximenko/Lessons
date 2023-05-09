@@ -9,3 +9,12 @@ class Products(Base):
     name: Mapped[str]
     cost: Mapped[int]
     count: Mapped[int]
+
+    def print_products():
+        list_products = session.query(Products).all()
+        for i in list_products:
+            print(f"{i.id} {i.cost} {i.count} {i.name}")
+
+
+
+
