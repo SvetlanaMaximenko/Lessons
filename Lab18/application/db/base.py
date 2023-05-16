@@ -2,33 +2,17 @@ from sqlalchemy import create_engine, select, exc, update as sqlalchemy_update
 from sqlalchemy.orm import sessionmaker, DeclarativeBase
 
 
-# class SingletonMeta(type):
-#
-#     _instances = {}
-#
-#     def __call__(cls, *args, **kwargs):
-#         """
-#         Данная реализация не учитывает возможное изменение передаваемых
-#         аргументов в `__init__`.
-#         """
-#         if cls not in cls._instances:
-#             instance = super().__call__(*args, **kwargs)
-#             cls._instances[cls] = instance
-#         return cls._instances[cls]
-#
-#
-# class Singleton(metaclass=SingletonMeta):
-#     def some_business_logic(self):
-#         """
-#         Наконец, любой одиночка должен содержать некоторую бизнес-логику,
-#         которая может быть выполнена на его экземпляре.
-#         """
-
-
 class SessionManager:
+
+    __instance = None
+
     def __init__(self):
-        self._engine = None
-        self._session = None
+        if not SessionManager.__instance:
+            print(" __init__ method called..")
+            self._engine = None
+            self._session = None
+        else:
+            print("Instance already created:", self.get_instance())
 
     def init_engine(self, dsn: str):
         """
@@ -43,6 +27,12 @@ class SessionManager:
             bind=self._engine,
             expire_on_commit=False,
         )
+
+    @classmethod
+    def get_instance(cls):
+        if not cls.__instance:
+            cls.__instance = SessionManager()
+        return cls.__instance
 
     def __call__(self, *args, **kwargs):
         return self._session(*args, **kwargs)
